@@ -1,0 +1,28 @@
+SELECT
+  DISTINCT VIDEO.NAME AS video_name,
+  VIDEO.NO_OF_views
+FROM
+  VIDEO
+  INNER JOIN VIDEO_GENRE ON VIDEO.VIDEO_ID = VIDEO_GENRE.VIDEO_ID
+WHERE
+  VIDEO.VIDEO_ID IN (
+    SELECT
+      VIDEO_GENRE.video_id
+    FROM
+      VIDEO_GENRE
+    WHERE
+      VIDEO_GENRE.genre_id = 201
+  )
+  AND VIDEo.video_id IN (
+    SELECT
+      VIDEO_GENRE.video_id
+    FROM
+      VIDEO_GENRE
+    WHERE
+      VIDEO_GENRE.genre_id = 202
+  )
+ORDER BY
+  VIDEO.no_of_views DESC,
+  VIDEO.NAME ASC
+LIMIT
+  5;
